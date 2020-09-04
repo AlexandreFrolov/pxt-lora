@@ -194,6 +194,7 @@ namespace pxtlora {
      */
     //% block
     //% weight=50
+    //% block="Send string: | STRING: %str"
     export function e32SendString (str: string) {
       if(e32Pins.config == false) {
         setNormalMode()
@@ -201,22 +202,19 @@ namespace pxtlora {
       }
     }
 
-
     /**
      * e32SendStringFixed
      */
     //% block
     //% weight=49
-    //% block="Send string in FIXED configuration: | STRING: %str ADDR: %addr CHANNEL: %channel FIXED: %fixedm"
-    //% addr.defl=0 addr.min=0 addr.max=65535 channel.min=0 channel.max=31 channel.defl=15 fixedm.defl=false
-    export function e32SendStringFixed (str: string, addr: number, channel: number, fixedm: boolean) {
+    //% block="Send string in FIXED configuration: | STRING: %str ADDR: %addr CHANNEL: %channel"
+    //% addr.defl=0 addr.min=0 addr.max=65535 channel.min=0 channel.max=31 channel.defl=15
+    export function e32SendStringFixed (str: string, addr: number, channel: number) {
       if(e32Pins.config == false) {
         setNormalMode()
         serial.writeLine(str)
       }
     }
-
-
 
 
     /**
