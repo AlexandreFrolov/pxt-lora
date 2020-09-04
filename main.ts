@@ -36,6 +36,20 @@ namespace pxtlora {
 
     E32LORA_init()
 
+
+    let onReceivedStringHandler: (receivedString: string) => void;
+
+    serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
+        let str: string = serial.readString()
+        onReceivedStringHandler(str)
+    //    basic.showIcon(IconNames.Heart)
+    //    OLED.writeStringNewLine(serial.readString())
+    //    basic.showIcon(IconNames.Yes)
+    })
+
+
+
+
     /**
      * decToHexString
      *
@@ -123,7 +137,6 @@ namespace pxtlora {
     /**
      * Registers code to run when the radio receives a string.
      */
-     /*
     //% help=radio/on-received-string
     //% block="on e32radio received" blockGap=16
     //% useLoc="E32LORA.onDataPacketReceived" draggableParameters=reporter
@@ -131,8 +144,6 @@ namespace pxtlora {
         init();
         onReceivedStringHandler = cb;
     }
-
-*/
 
 
     /**
