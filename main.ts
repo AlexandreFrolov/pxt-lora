@@ -194,7 +194,7 @@ namespace pxtlora {
      */
     //% block
     //% weight=50
-    //% block="Send string: | STRING: %str"
+    //% block="Send string: | %str"
     export function e32SendString (str: string) {
       if(e32Pins.config == false) {
         setNormalMode()
