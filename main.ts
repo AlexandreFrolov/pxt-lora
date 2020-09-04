@@ -39,11 +39,11 @@ namespace pxtlora {
     let onReceivedStringHandler: (receivedString: string) => void;
 
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-        let str: string = serial.readString()
-        onReceivedStringHandler(str)
-    //    basic.showIcon(IconNames.Heart)
-    //    OLED.writeStringNewLine(serial.readString())
-    //    basic.showIcon(IconNames.Yes)
+        if(e32Pins.config == false)
+        {
+          let str: string = serial.readString()
+          onReceivedStringHandler(str)
+        }
     })
 
 
@@ -141,11 +141,8 @@ namespace pxtlora {
     //% block="on e32radio received" blockGap=16
     //% useLoc="E32LORA.onDataPacketReceived" draggableParameters=reporter
     export function onReceivedString(cb: (receivedString: string) => void) {
-        if(e32Pins.config == false)
-        {
-          init();
-          onReceivedStringHandler = cb;
-        }
+        init();
+        onReceivedStringHandler = cb;
     }
 
 
