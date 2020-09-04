@@ -189,8 +189,10 @@ namespace pxtlora {
     //% block
     //% weight=50
     export function e32SendString (str: string) {
-      setNormalMode()
-      serial.writeLine(str)
+      if(e32Pins.config == false) {
+        setNormalMode()
+        serial.writeLine(str)
+      }
     }
 
     /**
