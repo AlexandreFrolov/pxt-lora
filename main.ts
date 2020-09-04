@@ -201,6 +201,24 @@ namespace pxtlora {
       }
     }
 
+
+    /**
+     * e32SendStringFixed
+     */
+    //% block
+    //% weight=50
+    //% block="Set E32LORA module configuration: | STRING: %str ADDR: %addr CHANNEL: %channel FIXED: %fixedm"
+    //% addr.defl=0 addr.min=0 addr.max=65535 channel.min=0 channel.max=31 channel.defl=15 fixedm.defl=false
+    export function e32SendStringFixed (str: string, addr: number, channel: number, fixedm: boolean) {
+      if(e32Pins.config == false) {
+        setNormalMode()
+        serial.writeLine(str)
+      }
+    }
+
+
+
+
     /**
      * setSetupMode
      */
