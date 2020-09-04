@@ -215,6 +215,7 @@ namespace pxtlora {
     //% weight=34
     export function e32parameters () {
       let rcvData: Buffer = null
+      rcvData = Buffer.create(16)
 
       let params = ""
 
@@ -223,7 +224,6 @@ namespace pxtlora {
       let dataToSend=Buffer.fromHex("c1c1c1")
       serial.writeBuffer(dataToSend)
 
-      serial.setRxBufferSize(6)
       rcvData = serial.readBuffer(6)
 
       let recArray=rcvData.toArray(NumberFormat.UInt8LE)
