@@ -235,8 +235,8 @@ namespace pxtlora {
 
       if(e32Pins.config == false) {
         setNormalMode()
-//        serial.writeBuffer(cmdBuffer)
-//        serial.writeLine(str)
+        serial.writeBuffer(cmdBuffer)
+        serial.writeLine(str)
       }
     }
 
