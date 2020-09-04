@@ -263,7 +263,7 @@ namespace pxtlora {
       setSetupMode()
       e32auxTimeout(200)
 
-      basic.showNumber(pins.digitalReadPin(DigitalPin.P1))
+//      basic.showNumber(pins.digitalReadPin(DigitalPin.P1))
 
       let dataToSend=Buffer.fromHex("c1c1c1")
       serial.writeBuffer(dataToSend)
