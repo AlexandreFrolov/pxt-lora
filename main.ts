@@ -386,7 +386,7 @@ namespace pxtlora {
         let _uartbaud: NumberFormat.UInt8LE = parseInt(ubaud);
         let _airbaud: NumberFormat.UInt8LE = parseInt(airbaud);
 
-        basic.showNumber(airbaud)
+        basic.showNumber(_airbaud)
 
         let byte3: NumberFormat.UInt8LE = ((_uartbaud << 3) + _airbaud) & 0x3f; // UART mode protection: 8N1 only available
         let byte3String: string = decToHexString(byte3, 16);
