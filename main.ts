@@ -20,6 +20,7 @@ namespace pxtlora {
         tx: SerialPin;
         rx: SerialPin;
         baud: BaudRate;
+        config: boolean;
     }
 
 
@@ -115,9 +116,9 @@ namespace pxtlora {
      * e32Init
      */
     //% weight=44
-    //% block="E32LORA pin config:|M0: %m0 M1: %m1 AUX: %aux|TX: %tx RX: %rx BAUD: %baud"
-    //% m0.defl=DigitalPin.P16 m1.defl=DigitalPin.P12 aux.defl=DigitalPin.P1 tx.defl=SerialPin.P2 rx.defl=SerialPin.P8 baud.defl=BaudRate.BaudRate9600
-      export function e32Init(m0: DigitalPin, m1: DigitalPin, aux: DigitalPin, tx: SerialPin, rx: SerialPin, baud: BaudRate) {
+    //% block="E32LORA pin config:|M0: %m0 M1: %m1 AUX: %aux|TX: %tx RX: %rx BAUD: %baud CONFIGURATION MODE: %ConfigMode"
+    //% m0.defl=DigitalPin.P16 m1.defl=DigitalPin.P12 aux.defl=DigitalPin.P1 tx.defl=SerialPin.P2 rx.defl=SerialPin.P8 baud.defl=BaudRate.BaudRate9600 ConfigMode.defl=false
+      export function e32Init(m0: DigitalPin, m1: DigitalPin, aux: DigitalPin, tx: SerialPin, rx: SerialPin, baud: BaudRate, ConfigMode: boolean) {
 
           serial.redirect(rx, tx, baud)
 
@@ -127,6 +128,7 @@ namespace pxtlora {
           e32Pins.tx= tx;
           e32Pins.rx= rx;
           e32Pins.baud = baud;
+          e32Pins.config = ConfigMode;
           setNormalMode()
     }
 
