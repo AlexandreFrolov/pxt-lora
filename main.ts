@@ -405,12 +405,13 @@ namespace pxtlora {
         let byte5String  = decToHexString(byte5, 16);
         let cmdBuffer=Buffer.fromHex(byte1String + addrString + "1a" + byte4String + byte5String)
 
+/*
         setSetupMode()
         e32auxTimeout(100)
         serial.writeBuffer(cmdBuffer)
         setNormalMode()
         e32auxTimeout(100)
-
+*/
         return buffer2string(cmdBuffer);
     }
 
