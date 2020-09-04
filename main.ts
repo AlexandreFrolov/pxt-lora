@@ -215,12 +215,15 @@ namespace pxtlora {
     //% weight=34
     export function e32parameters () {
       let rcvData: Buffer = null
-      rcvData = Buffer.create(16)
+      rcvData = Buffer.create(6)
 
       let params = ""
 
       setSetupMode()
-//      basic.showNumber(pins.digitalReadPin(DigitalPin.P1))
+      e32auxTimeout(200)
+
+      basic.showNumber(pins.digitalReadPin(DigitalPin.P1))
+
       let dataToSend=Buffer.fromHex("c1c1c1")
       serial.writeBuffer(dataToSend)
 
@@ -231,6 +234,7 @@ namespace pxtlora {
           params = "" + params + ("" + decToHexString(recArray[idx], 16) + " ")
       }
       setNormalMode()
+      e32auxTimeout(200)
       return params
     }
 
