@@ -165,14 +165,8 @@ namespace pxtlora {
           e32Pins.tx= tx;
           e32Pins.rx= rx;
           e32Pins.baud = baud;
-
           e32Pins.config = ConfigMode;
-          if(e32Pins.config) {
-            setSetupMode()
-          }
-          else {
-            setNormalMode()
-          }
+          setNormalMode()
     }
 
 
