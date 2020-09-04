@@ -210,9 +210,33 @@ namespace pxtlora {
     //% block="E32 Send string: | %str TO ADDR: %addr CHANNEL: %channel"
     //% addr.defl=0 addr.min=0 addr.max=65535 channel.min=0 channel.max=31 channel.defl=15
     export function e32SendStringFixed (str: string, addr: number, channel: number) {
+
+      // Parameters check. Halt if errors found.
+      let addrString: string = "";
+      if(addr < 0 || addr > 65535) {
+        errorHalt(11);
+      }
+      if(channel < 0 || channel > 31) {
+        errorHalt(12);
+      }
+
+      if(addr <= 255) {
+        addrString = "00" + decToHexString(addr, 16);
+      }
+      else if (addr <= 65535) {
+        let lo: NumberFormat.UInt8LE = addr & 0xff;
+        let hi: NumberFormat.UInt8LE = (addr & 0xff00) >> 8;
+        addrString = decToHexString(hi, 16) + decToHexString(lo, 16);
+      }
+
+      let byte3String: string = decToHexString(channel & 0x1f, 16); // 0x00...0x1f
+
+      let cmdBuffer=Buffer.fromHex(addrString + byte3String)
+
       if(e32Pins.config == false) {
         setNormalMode()
-        serial.writeLine(str)
+//        serial.writeBuffer(cmdBuffer)
+//        serial.writeLine(str)
       }
     }
 
