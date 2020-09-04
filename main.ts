@@ -141,8 +141,11 @@ namespace pxtlora {
     //% block="on e32radio received" blockGap=16
     //% useLoc="E32LORA.onDataPacketReceived" draggableParameters=reporter
     export function onReceivedString(cb: (receivedString: string) => void) {
-        init();
-        onReceivedStringHandler = cb;
+        if(e32Pins.config == false)
+        {
+          init();
+          onReceivedStringHandler = cb;
+        }
     }
 
 
