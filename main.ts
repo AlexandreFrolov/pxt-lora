@@ -248,10 +248,12 @@ namespace pxtlora {
      * e32auxTimeout
      */
     function e32auxTimeout(value: number) {
-      basic.pause(value)
-      if(auxPin() == 0){
-        basic.showIcon(IconNames.Angry)
-        basic.showString("e: aux timeout")
+      if(auxPin() == 0) {
+        basic.pause(value)
+        if(auxPin() == 0) {
+          basic.showIcon(IconNames.Angry)
+          basic.showString("e: aux timeout")
+        }
       }
     }
 
