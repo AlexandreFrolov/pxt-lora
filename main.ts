@@ -207,7 +207,7 @@ namespace pxtlora {
      */
     //% block
     //% weight=49
-    //% block="Send string in FIXED configuration: | STRING: %str ADDR: %addr CHANNEL: %channel"
+    //% block="Send string to address: | %str ADDR: %addr CHANNEL: %channel"
     //% addr.defl=0 addr.min=0 addr.max=65535 channel.min=0 channel.max=31 channel.defl=15
     export function e32SendStringFixed (str: string, addr: number, channel: number) {
       if(e32Pins.config == false) {
