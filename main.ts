@@ -351,12 +351,11 @@ namespace pxtlora {
     //% weight=46
     //% block="E32LORA module config: | ADDR: %addr CHANNEL: %channel FIXED: %fixedm UART BAUD: %ubaud AIR BAUD: %airbaud POWER: %pwr SAVE CONFIG: %save"
     //% addr.defl=0 addr.min=0 addr.max=65535 channel.min=0 channel.max=31 channel.defl=15 fixedm.defl=false ubaud.defl=UartBaud.BaudRate9600 airbaud.defl=AirBaud.BaudRate2400 pwr.defl=0 pwr.min=0 pwr.max=3 save.defl=false
-    export function e32config(addr: number, channel: number, fixedm: boolean, ubaud: UartBaud, airbaud: AirBaud, pwr: number, save: boolean): string {
+    export function e32config(addr: number, channel: number, fixedm: boolean, ubaud: UartBaud, airbaud: AirBaud, pwr: number, save: boolean)  {
 
         if(e32Pins.config == false) {
-          return "Not in cfg mode";
+          return;
         }
-
 
         // Parameters check. Halt if errors found.
         let addrString: string = "";
@@ -391,8 +390,6 @@ namespace pxtlora {
         let _uartbaud: NumberFormat.UInt8LE = parseInt(ubaud);
         let _airbaud: NumberFormat.UInt8LE = parseInt(airbaud);
 
-//        basic.showNumber(_airbaud)
-
         let byte3: NumberFormat.UInt8LE = ((_uartbaud << 3) + _airbaud) & 0x3f; // UART mode protection: 8N1 only available
         let byte3String: string = decToHexString(byte3, 16);
 
@@ -413,14 +410,11 @@ namespace pxtlora {
         let byte5String  = decToHexString(byte5, 16);
         let cmdBuffer=Buffer.fromHex(byte1String + addrString + byte3String + byte4String + byte5String)
 
-/*
         setSetupMode()
         e32auxTimeout(100)
         serial.writeBuffer(cmdBuffer)
         setNormalMode()
         e32auxTimeout(100)
-*/
-        return buffer2string(cmdBuffer);
     }
 
 }
