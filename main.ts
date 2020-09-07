@@ -32,20 +32,11 @@
         BaudRate19200 = "5"
     }
 
-
-
-
 /**
  * pxt-lora block
  */
 //% weight=100 color=#00cc00 icon="\uf012" block="E32LORA"
 namespace pxtlora {
-
-//    const E32LORA_I2C_ADDR=0x68
-
-
-    function E32LORA_init() {
-    }
 
     /**
      * E32 Pin Config class
@@ -60,18 +51,13 @@ namespace pxtlora {
         config: boolean;
     }
 
-
     let e32Pins = new E32PinConfig();
 
     let initialized = false;
     function init() {
         if (initialized) return;
         initialized = true;
-//        onDataReceived(handleDataReceived);
     }
-
-    E32LORA_init()
-
 
     let onReceivedStringHandler: (receivedString: string) => void;
 
@@ -82,9 +68,6 @@ namespace pxtlora {
           onReceivedStringHandler(str)
         }
     })
-
-
-
 
     /**
      * decToHexString
@@ -111,10 +94,16 @@ namespace pxtlora {
         return returnVal;
     }
 
+    /**
+     * decToBcd
+    */
     function decToBcd(value: number): number {
         return (Math.floor(value / 10) << 4) + (value % 10)
     }
 
+    /**
+     * bcdToDec
+    */
     function bcdToDec(value: number): number {
         return Math.floor(value / 16) * 10 + (value % 16)
     }
@@ -148,7 +137,6 @@ namespace pxtlora {
       return str;
     }
 
-
     /**
      * e32Init
      */
@@ -175,8 +163,6 @@ namespace pxtlora {
           }
     }
 
-
-
     /**
      * Registers code to run when the radio receives a string.
      */
@@ -187,7 +173,6 @@ namespace pxtlora {
         init();
         onReceivedStringHandler = cb;
     }
-
 
     /**
      * e32SendString
@@ -240,7 +225,6 @@ namespace pxtlora {
       }
     }
 
-
     /**
      * setSetupMode
      */
@@ -282,7 +266,6 @@ namespace pxtlora {
       let params = ""
 
       setSetupMode()
-//      basic.showNumber(pins.digitalReadPin(DigitalPin.P1))
       let dataToSend2=Buffer.fromHex("c3c3c3")
       serial.writeBuffer(dataToSend2)
       rcvData = serial.readBuffer(4)
@@ -308,8 +291,6 @@ namespace pxtlora {
 
       setSetupMode()
       e32auxTimeout(200)
-
-//      basic.showNumber(pins.digitalReadPin(DigitalPin.P1))
 
       let dataToSend=Buffer.fromHex("c1c1c1")
       serial.writeBuffer(dataToSend)
@@ -340,7 +321,6 @@ namespace pxtlora {
     }
 
 
-
 // ==========================================================================
 // Internal Functions
 // ==========================================================================
@@ -362,13 +342,12 @@ namespace pxtlora {
 // Advanced Export Functions
 // ==========================================================================
 
-
-
     /**
      * hexString
      */
     //% block
     //% weight=20
+    //% advanced=true
     export function hexString(value: number): string {
         return decToHexString(value, 16)
     }
@@ -378,6 +357,7 @@ namespace pxtlora {
      */
     //% block
     //% weight=19
+    //% advanced=true
     export function binaryString(value: number): string {
         return decToHexString(value, 2)
     }
@@ -387,6 +367,7 @@ namespace pxtlora {
      */
     //% block
     //% weight=18
+    //% advanced=true
     export function decimalString(value: number): string {
         return decToHexString(value, 10)
     }
