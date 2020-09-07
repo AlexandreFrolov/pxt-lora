@@ -69,6 +69,23 @@ namespace pxtlora {
         }
     })
 
+
+// ==========================================================================
+// Internal Functions
+// ==========================================================================
+
+    /**
+     * e32auxTimeout
+     */
+    function e32auxTimeout(value: number) {
+      basic.pause(value)
+      if(auxPin() == 0){
+        basic.showIcon(IconNames.Angry)
+        basic.showString("e: aux timeout")
+      }
+    }
+
+
     /**
      * decToHexString
      *
@@ -108,12 +125,6 @@ namespace pxtlora {
         return Math.floor(value / 16) * 10 + (value % 16)
     }
 
-
-// ==========================================================================
-// Export Functions.
-// ==========================================================================
-
-
     /**
      * errorHalt
     */
@@ -136,6 +147,11 @@ namespace pxtlora {
         }
       return str;
     }
+
+
+// ==========================================================================
+// Export Functions.
+// ==========================================================================
 
     /**
      * e32Init
@@ -321,57 +337,6 @@ namespace pxtlora {
     }
 
 
-// ==========================================================================
-// Internal Functions
-// ==========================================================================
-
-
-    /**
-     * e32auxTimeout
-     */
-    function e32auxTimeout(value: number) {
-      basic.pause(value)
-      if(auxPin() == 0){
-        basic.showIcon(IconNames.Angry)
-        basic.showString("e: aux timeout")
-      }
-    }
-
-
-// ==========================================================================
-// Advanced Export Functions
-// ==========================================================================
-
-    /**
-     * hexString
-     */
-    //% block
-    //% weight=20
-    //% advanced=true
-    export function hexString(value: number): string {
-        return decToHexString(value, 16)
-    }
-
-    /**
-     * binaryString
-     */
-    //% block
-    //% weight=19
-    //% advanced=true
-    export function binaryString(value: number): string {
-        return decToHexString(value, 2)
-    }
-
-    /**
-     * decimalString
-     */
-    //% block
-    //% weight=18
-    //% advanced=true
-    export function decimalString(value: number): string {
-        return decToHexString(value, 10)
-    }
-
     /**
      * e32config
      */
@@ -442,6 +407,41 @@ namespace pxtlora {
         serial.writeBuffer(cmdBuffer)
         setNormalMode()
         e32auxTimeout(100)
+    }
+
+
+// ==========================================================================
+// Advanced Export Functions
+// ==========================================================================
+
+    /**
+     * hexString
+     */
+    //% block
+    //% weight=20
+    //% advanced=true
+    export function hexString(value: number): string {
+        return decToHexString(value, 16)
+    }
+
+    /**
+     * binaryString
+     */
+    //% block
+    //% weight=19
+    //% advanced=true
+    export function binaryString(value: number): string {
+        return decToHexString(value, 2)
+    }
+
+    /**
+     * decimalString
+     */
+    //% block
+    //% weight=18
+    //% advanced=true
+    export function decimalString(value: number): string {
+        return decToHexString(value, 10)
     }
 
 }
